@@ -15,7 +15,9 @@ public class AsteroidsPOO {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        System.out.println("Esto no es un hola mundo");// TODO code application logic here
+        for(int i=0; i<=10;i++){
+        System.out.println("Hola Mundo");
     }
     
+}
 }
