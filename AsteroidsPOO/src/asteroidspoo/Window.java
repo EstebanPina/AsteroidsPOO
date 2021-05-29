@@ -1,14 +1,23 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-package asteroidspoo;
+package main;
+import javax.swing.JFrame;
 
-/
- *
- * @author andyl
- */
-public class Window {
+public class Window extends JFrame{
+    public static final int WIDTH = 1000, HEIGHT = 800,
     
-}
+    public Windows()
+    {
+        setTitle(''Asterioids POO'');
+        setSize (WIDTH, HEIGHT);
+        SetDefaulltCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setResizable(false);
+        setLocationRelativeTo(null);
+        setVisible(true);
+       }
+   
+   
+   
+   
+   public static vold main(String[] args) {
+       new Window();
+       }
+)
