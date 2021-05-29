@@ -1,14 +1,14 @@
-package main;
+package asteroidspoo;
 import javax.swing.JFrame;
 
 public class Window extends JFrame{
-    public static final int WIDTH = 1000, HEIGHT = 800,
+    public static final int WIDTH = 1000, HEIGHT = 800;
     
-    public Windows()
+    public Window()
     {
-        setTitle(''Asterioids POO'');
+        setTitle("Asterioids POO");
         setSize (WIDTH, HEIGHT);
-        SetDefaulltCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setResizable(false);
         setLocationRelativeTo(null);
         setVisible(true);
@@ -17,7 +17,7 @@ public class Window extends JFrame{
    
    
    
-   public static vold main(String[] args) {
+   public static void main(String[] args) {
        new Window();
        }
-)
+}
