@@ -5,7 +5,7 @@
  */
 package asteroidspoo;
 
-/**
+/
  *
  * @author andyl
  */
