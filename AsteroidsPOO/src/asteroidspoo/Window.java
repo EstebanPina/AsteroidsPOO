@@ -26,7 +26,7 @@ public class Window extends JFrame implements Runnable{
 	
 	public Window()
 	{
-		setTitle("Space Ship Game");
+		setTitle("Asteroids POO");
 		setSize(WIDTH, HEIGHT);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setResizable(false);
