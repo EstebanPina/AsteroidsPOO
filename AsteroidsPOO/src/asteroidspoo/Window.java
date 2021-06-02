@@ -24,8 +24,7 @@ public class Window extends JFrame implements Runnable{
 	private double delta = 0;
 	private int AVERAGEFPS = FPS;
 	
-	public Window()
-	{
+	public Window(){
 		setTitle("Asteroids POO");
 		setSize(WIDTH, HEIGHT);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -41,16 +40,12 @@ public class Window extends JFrame implements Runnable{
 		canvas.setFocusable(true);
 		
 		add(canvas);
-		
 	}
-	
 	
 
-	public static void main(String[] args) {
+	public static void main(String[] args){
 		new Window().start();
 	}
-	
-	
 	private void update(){
 		
 	}
@@ -58,8 +53,7 @@ public class Window extends JFrame implements Runnable{
 	private void draw(){
 		bs = canvas.getBufferStrategy();
 		
-		if(bs == null)
-		{
+		if(bs == null){
 			canvas.createBufferStrategy(3);
 			return;
 		}
@@ -88,17 +82,15 @@ public class Window extends JFrame implements Runnable{
 	
 	
 	@Override
-	public void run() {
+	public void run(){
 		
 		long now = 0;
 		long lastTime = System.nanoTime();
 		int frames = 0;
 		long time = 0;
-		
 		init();
 		
-		while(running)
-		{
+		while(running){
 			now = System.nanoTime();
 			delta += (now - lastTime)/TARGETTIME;
 			time += (now - lastTime);
@@ -106,15 +98,13 @@ public class Window extends JFrame implements Runnable{
 			
 			
 			
-			if(delta >= 1)
-			{		
+			if(delta >= 1){		
 				update();
 				draw();
 				delta --;
 				frames ++;
 			}
-			if(time >= 1000000000)
-			{
+			if(time >= 1000000000){
 				AVERAGEFPS = frames;
 				frames = 0;
 				time = 0;
@@ -128,18 +118,16 @@ public class Window extends JFrame implements Runnable{
 	}
 	
 	private void start(){
-		
 		thread = new Thread(this);
 		thread.start();
 		running = true;
-		
-		
+
 	}
 	private void stop(){
-		try {
+		try{
 			thread.join();
 			running = false;
-		} catch (InterruptedException e) {
+		}catch(InterruptedException e){
 			e.printStackTrace();
 		}
 	}
