@@ -8,7 +8,7 @@ public class Assets {
 	
 	public static void init()
 	{
-		player = Loader.ImageLoader("/ships/player.png");
+		player = Loader.ImageLoader("../res/player.png");
 	}
 	
 }
