@@ -18,7 +18,6 @@ public class AsteroidsPOO {
         for(int i=0; i<=10;i++){
         System.out.println("Hola Mundo");
         System.out.println("Probando Git en VSCode");
-        System.out.println("AHUEVO K YA QUEDÓ");
         }
     
 }
