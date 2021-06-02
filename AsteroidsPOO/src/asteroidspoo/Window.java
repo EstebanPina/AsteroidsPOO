@@ -79,9 +79,7 @@ public class Window extends JFrame implements Runnable{
 	{
 		Assets.init();
 	}
-	
-	
-	@Override
+
 	public void run(){
 		
 		long now = 0;
