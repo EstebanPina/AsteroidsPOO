@@ -75,8 +75,7 @@ public class Window extends JFrame implements Runnable{
 		bs.show();
 	}
 	
-	private void init()
-	{
+	private void init(){
 		Assets.init();
 	}
 
@@ -94,8 +93,6 @@ public class Window extends JFrame implements Runnable{
 			time += (now - lastTime);
 			lastTime = now;
 			
-			
-			
 			if(delta >= 1){		
 				update();
 				draw();
@@ -108,10 +105,7 @@ public class Window extends JFrame implements Runnable{
 				time = 0;
 				
 			}
-			
-			
 		}
-		
 		stop();
 	}
 	
