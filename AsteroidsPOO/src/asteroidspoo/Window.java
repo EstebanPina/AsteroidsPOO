@@ -6,7 +6,6 @@ import java.awt.Graphics;
 import java.awt.image.BufferStrategy;
 
 import javax.swing.JFrame;
-import javax.swing.plaf.basic.BasicSplitPaneUI.KeyboardDownRightHandler;
 
 import graphics.Assets;
 import input.KeyBoard;
