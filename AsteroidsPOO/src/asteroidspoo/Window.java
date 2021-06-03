@@ -6,8 +6,10 @@ import java.awt.Graphics;
 import java.awt.image.BufferStrategy;
 
 import javax.swing.JFrame;
+import javax.swing.plaf.basic.BasicSplitPaneUI.KeyboardDownRightHandler;
 
 import graphics.Assets;
+import input.KeyBoard;
 import states.GameState;
 
 public class Window extends JFrame implements Runnable{
@@ -26,6 +28,7 @@ public class Window extends JFrame implements Runnable{
 	private int AVERAGEFPS = FPS;
 
 	private GameState gameState;
+	private KeyBoard keyBoard;
 	
 	public Window(){
 		setTitle("Asteroids POO");
@@ -36,6 +39,7 @@ public class Window extends JFrame implements Runnable{
 		setVisible(true);
 		
 		canvas = new Canvas();
+		keyBoard = new KeyBoard();
 		
 		canvas.setPreferredSize(new Dimension(WIDTH, HEIGHT));
 		canvas.setMaximumSize(new Dimension(WIDTH, HEIGHT));
@@ -43,6 +47,7 @@ public class Window extends JFrame implements Runnable{
 		canvas.setFocusable(true);
 		
 		add(canvas);
+		canvas.addKeyListener(keyBoard);
 	}
 	
 
@@ -50,6 +55,7 @@ public class Window extends JFrame implements Runnable{
 		new Window().start();
 	}
 	private void update(){
+		keyBoard.update();
 		gameState.update();
 	}
 

@@ -3,6 +3,7 @@ package gameObjets;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 
+import input.KeyBoard;
 import math.Vector2D;
 
 public class Player extends GameObject{
@@ -14,7 +15,9 @@ public class Player extends GameObject{
 
     @Override
     public void update() {
-
+        if(KeyBoard.RIGHT){
+            position.setX(position.getX()+1);
+        }
     }
 
     @Override
