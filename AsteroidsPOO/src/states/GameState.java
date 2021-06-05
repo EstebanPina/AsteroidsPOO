@@ -1,10 +1,13 @@
 package states;
 
+import static gameObjets.Constants.PLAYER_MAX_VEL;
 import java.awt.Graphics;
 
 import gameObjets.Player;
 import gameObjets.movingObject;
 import graphics.Assets;
+import java.awt.Graphics2D;
+import java.awt.RenderingHints;
 import java.util.ArrayList;
 import math.Vector2D;
 
@@ -15,7 +18,7 @@ public class GameState {
     private ArrayList<movingObject> movingObjects = new ArrayList<movingObject>();
 
     public GameState(){
-        player = new Player(new Vector2D(100, 500), new Vector2D(),7, Assets.player,this);
+       player = new Player(new Vector2D(100, 500), new Vector2D(),PLAYER_MAX_VEL, Assets.player,this);
         movingObjects.add(player);
     }
     public void update(){
@@ -24,6 +27,8 @@ public class GameState {
         }
     }
     public void draw(Graphics g){
+        Graphics2D g2d=(Graphics2D)g;
+        g2d.setRenderingHint(RenderingHints.KEY_INTERPOLATION, RenderingHints.VALUE_INTERPOLATION_BILINEAR);
       for(int i = 0; i < movingObjects.size();i++){
             movingObjects.get(i).draw(g);
         }
