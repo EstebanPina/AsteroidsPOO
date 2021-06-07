@@ -16,4 +16,6 @@ public class Constants {
      public static final double PLAYER_MAX_VEL = 7.0;
      //Constantes Laser
      public static final double LASER_VEL=15.0;
+     //Constantes meteoro
+     public static final double METEOR_VEL=2.0;
 }

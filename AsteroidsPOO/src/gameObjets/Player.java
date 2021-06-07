@@ -81,7 +81,7 @@ public class Player extends movingObject{
                 }
                 at = AffineTransform.getTranslateInstance(position.getX(), position.getY());
 		at.rotate(angle, width/2, height/2);
-		g2d.drawImage(Assets.player, at, null);
+		g2d.drawImage(texture, at, null);
     }
     public Vector2D getCenter(){
         return new Vector2D(position.getX()+width/2,position.getY()+height/2);
