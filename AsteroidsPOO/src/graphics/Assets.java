@@ -7,13 +7,18 @@ public class Assets {
 	public static BufferedImage player;
 	// efectos
         public static BufferedImage speed;
+    //lasers
         public static BufferedImage blueLaser;
         public static BufferedImage greenLaser;
         public static BufferedImage redLaser;
+    //meteoros
         public static BufferedImage[] big = new BufferedImage[4];
         public static BufferedImage[] meds = new BufferedImage[2];
         public static BufferedImage[] smalls = new BufferedImage[2];
         public static BufferedImage[] tinies = new BufferedImage[2];
+    //explosiones
+        public static BufferedImage[] exp = new BufferedImage[9];
+
 	public static void init()
 	{
 		player = Loader.ImageLoader("../res/player.png");
@@ -29,6 +34,8 @@ public class Assets {
                     smalls[i]=Loader.ImageLoader("../res/meteors/small"+(i+1)+".png");
                 for (int i = 0; i<tinies.length;i++)
                     tinies[i]=Loader.ImageLoader("../res/meteors/tiny"+(i+1)+".png");
+                for (int i = 0; i<exp.length; i++)
+                    exp[i] = Loader.ImageLoader("../res/explosion/"+i+".png");
                 
 	}
 	

@@ -32,11 +32,14 @@ public class Player extends movingObject{
     @Override
     public void update() {
         if(KeyBoard.SHOOT && !fireRate.isRunning()){
-            gameState.getmovingObjects().add(0,new Laser(getCenter().add(heading.scale(width))
-                    ,heading,Constants.LASER_VEL
-                    ,angle
-                    ,Assets.blueLaser
-                    ,gameState));
+            gameState.getmovingObjects().add(0,new Laser(
+                getCenter().add(heading.scale(width))
+                ,heading
+                ,Constants.LASER_VEL
+                ,angle
+                ,Assets.blueLaser
+                ,gameState
+                ));
             fireRate.run(Constants.FIRERATE);
         }
         if(KeyBoard.RIGHT)
@@ -56,34 +59,41 @@ public class Player extends movingObject{
         velocity = velocity.limit(maxVel);
         heading = heading.setDirection(angle-Math.PI/2);
         position = position.add(velocity);
-        if(position.getX()>Constants.WIDTH)
-         position.setX(0);
-         if(position.getX()<0)
-         position.setX(Constants.WIDTH);
-          if(position.getY()>Constants.HEIGHT)
-         position.setY(0);
-         if(position.getY()<0)
-         position.setY(Constants.HEIGHT);
+        if(position.getX() > Constants.WIDTH)
+			position.setX(0);
+		if(position.getY() > Constants.HEIGHT)
+			position.setY(0);
+		
+		if(position.getX() < 0)
+			position.setX(Constants.WIDTH);
+		if(position.getY() < 0)
+			position.setY(Constants.HEIGHT);
         
         fireRate.update();
+        collidesWith();
     }
 
     @Override
     public void draw(Graphics g) {
-        Graphics2D g2d = (Graphics2D)g;
-                AffineTransform at1=AffineTransform.getTranslateInstance(position.getX()+width/2 +5,position.getY()+height/2 + 10);
-		at1.rotate(angle, -5,-10);
-                AffineTransform at2=AffineTransform.getTranslateInstance(position.getX()+5,position.getY()+height/2 +10);
-		at2.rotate(angle, width/2 -5 ,-10);
-                if(accelerating){
-                g2d.drawImage(Assets.speed, at2, null);
-                g2d.drawImage(Assets.speed, at1, null);
-                }
-                at = AffineTransform.getTranslateInstance(position.getX(), position.getY());
+		
+		Graphics2D g2d = (Graphics2D)g;
+		AffineTransform at1 = AffineTransform.getTranslateInstance(position.getX() + width/2 + 5,
+				position.getY() + height/2 + 10);
+		AffineTransform at2 = AffineTransform.getTranslateInstance(position.getX() + 5, position.getY() + height/2 + 10);
+		
+		at1.rotate(angle, -5, -10);
+		at2.rotate(angle, width/2 -5, -10);
+		
+		if(accelerating)
+		{
+			g2d.drawImage(Assets.speed, at1, null);
+			g2d.drawImage(Assets.speed, at2, null);
+		}
+		
+		at = AffineTransform.getTranslateInstance(position.getX(), position.getY());
 		at.rotate(angle, width/2, height/2);
 		g2d.drawImage(texture, at, null);
-    }
-    public Vector2D getCenter(){
-        return new Vector2D(position.getX()+width/2,position.getY()+height/2);
-    }
+		
+	}
+	
 }

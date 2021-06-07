@@ -7,7 +7,7 @@ package gameObjets;
 
 public class Constants {
     //Constantes Window
-    public static final int WIDTH = 800;
+    public static final int WIDTH = 1000;
     public static final int HEIGHT = 600;
     //Constantes Player
      public static final int FIRERATE =300;

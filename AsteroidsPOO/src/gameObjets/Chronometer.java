@@ -13,6 +13,7 @@ public class Chronometer{
     private long delta, lastTime;
     private long time;
     private boolean running;
+    
     public Chronometer(){
         delta=0;
         lastTime=0;

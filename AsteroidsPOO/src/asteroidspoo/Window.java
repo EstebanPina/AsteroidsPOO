@@ -8,13 +8,15 @@ import java.awt.image.BufferStrategy;
 
 import javax.swing.JFrame;
 
+import gameObjets.Constants;
 import graphics.Assets;
 import input.KeyBoard;
 import states.GameState;
 
 public class Window extends JFrame implements Runnable{
 	
-	
+	private static final long serialVersionUID = 1L;
+
 	private Canvas canvas;
 	private Thread thread;
 	private boolean running = false;
@@ -47,9 +49,8 @@ public class Window extends JFrame implements Runnable{
 		canvas.setFocusable(true);
 		
 		
-                
-		canvas.addKeyListener(keyBoard);
                 add(canvas);
+				canvas.addKeyListener(keyBoard);
                 setVisible(true);
 	}
 	
@@ -57,6 +58,7 @@ public class Window extends JFrame implements Runnable{
 	public static void main(String[] args){
 		new Window().start();
 	}
+
 	private void update(){
 		keyBoard.update();
 		gameState.update();
@@ -75,9 +77,9 @@ public class Window extends JFrame implements Runnable{
 		//-----------------------
 		
 		g.setColor(Color.BLACK);
-		
 		g.fillRect(0, 0, Constants.WIDTH, Constants.HEIGHT);
 		gameState.draw(g);
+		g.setColor(Color.WHITE);
 		g.drawString(""+AVERAGEFPS, 10, 20);
 		
 		//---------------------
@@ -89,7 +91,8 @@ public class Window extends JFrame implements Runnable{
 		Assets.init();
 		gameState = new GameState();
 	}
-
+	
+	@Override
 	public void run(){
 		
 		long now = 0;

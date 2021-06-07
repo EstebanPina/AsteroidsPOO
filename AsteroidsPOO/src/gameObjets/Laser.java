@@ -5,11 +5,12 @@
  */
 package gameObjets;
 
-import asteroidspoo.Window;
+//import asteroidspoo.Window;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.geom.AffineTransform;
 import java.awt.image.BufferedImage;
+
 import math.Vector2D;
 import states.GameState;
 
@@ -27,14 +28,12 @@ public class Laser extends movingObject{
     @Override
     public void update() {
         position = position.add(velocity);
-        if(position.getX()>Constants.WIDTH)
-         gameState.getmovingObjects().remove(this);
-         if(position.getX()<0)
-        gameState.getmovingObjects().remove(this);
-          if(position.getY()>Constants.HEIGHT)
-         gameState.getmovingObjects().remove(this);
-         if(position.getY()<0)
-         gameState.getmovingObjects().remove(this);
+		if(position.getX() < 0 || position.getX() > Constants.WIDTH ||
+				position.getY() < 0 || position.getY() > Constants.HEIGHT){
+
+			Destroy();
+		}
+		collidesWith();
     }
 
     @Override
@@ -44,4 +43,8 @@ public class Laser extends movingObject{
         at.rotate(angle,width/2,0);
         g2d.drawImage(texture, at, null);
     }
+    @Override
+    protected Vector2D getCenter(){
+		return new Vector2D(position.getX() + width/2, position.getY() + width/2);
+	}
 }
