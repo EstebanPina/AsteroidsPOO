@@ -23,4 +23,8 @@ public class Constants {
     public static final double UFO_MASS = 60;
     public static final double UFO_MAX_VEL = 3;
     public static long UFO_FIRE_RATE = 1000;
+    public static double UFO_ANGLE_RANGE=Math.PI/2;
+    //Constantes Puntos(SCORE)
+    public static int UFO_SCORE=40;
+    public static int METEOR_SCORE=20;
 }
