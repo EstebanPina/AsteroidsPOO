@@ -8,7 +8,7 @@ import java.awt.image.BufferStrategy;
 
 import javax.swing.JFrame;
 
-import gameObjets.Constants;
+//import gameObjets.Constants;
 import graphics.Assets;
 import input.KeyBoard;
 import states.GameState;
@@ -91,7 +91,7 @@ public class Window extends JFrame implements Runnable{
 		Assets.init();
 		gameState = new GameState();
 	}
-	
+
 	@Override
 	public void run(){
 		

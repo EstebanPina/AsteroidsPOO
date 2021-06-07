@@ -1,10 +1,10 @@
 package gameObjets;
 
-import asteroidspoo.Window;
-import static gameObjets.Constants.ACC;
-import static gameObjets.Constants.DELTAANGLE;
-import static gameObjets.Constants.FIRERATE;
-import static gameObjets.Constants.LASER_VEL;
+//import asteroidspoo.Window;
+//import static gameObjets.Constants.ACC;
+//import static gameObjets.Constants.DELTAANGLE;
+//import static gameObjets.Constants.FIRERATE;
+//import static gameObjets.Constants.LASER_VEL;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.geom.AffineTransform;
