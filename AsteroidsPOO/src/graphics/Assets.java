@@ -18,6 +18,8 @@ public class Assets {
         public static BufferedImage[] tinies = new BufferedImage[2];
     //explosiones
         public static BufferedImage[] exp = new BufferedImage[9];
+    //UFO
+    public static BufferedImage ufo;
 
 	public static void init()
 	{
@@ -36,6 +38,8 @@ public class Assets {
                     tinies[i]=Loader.ImageLoader("../res/meteors/tiny"+(i+1)+".png");
                 for (int i = 0; i<exp.length; i++)
                     exp[i] = Loader.ImageLoader("../res/explosion/"+i+".png");
+                
+                ufo = Loader.ImageLoader("../res/ufo.png");
                 
 	}
 	

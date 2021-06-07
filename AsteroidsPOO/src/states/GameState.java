@@ -5,6 +5,7 @@ import static gameObjets.Constants.PLAYER_MAX_VEL;
 import gameObjets.Meteor;
 import java.awt.Graphics;
 
+import gameObjets.Ufo;
 import gameObjets.Player;
 import gameObjets.Size;
 import gameObjets.movingObject;
@@ -15,6 +16,7 @@ import java.awt.RenderingHints;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import math.Vector2D;
+
 
 
 
@@ -81,6 +83,7 @@ public class GameState {
             ));
         }
         meteors ++;
+        spawnUfo();
     }
     public void playExplosion(Vector2D position){
         explosions.add(new Animation(
@@ -90,6 +93,43 @@ public class GameState {
             ));
 
     }
+    private void spawnUfo(){
+		
+		int rand = (int) (Math.random()*2);
+		
+		double x = rand == 0 ? (Math.random()*Constants.WIDTH): 0;
+		double y = rand == 0 ? 0 : (Math.random()*Constants.HEIGHT);
+		
+		ArrayList<Vector2D> path = new ArrayList<Vector2D>();
+		
+		double posX, posY;
+		
+		posX = Math.random()*Constants.WIDTH/2;
+		posY = Math.random()*Constants.HEIGHT/2;	
+		path.add(new Vector2D(posX, posY));
+
+		posX = Math.random()*(Constants.WIDTH/2) + Constants.WIDTH/2;
+		posY = Math.random()*Constants.HEIGHT/2;	
+		path.add(new Vector2D(posX, posY));
+		
+		posX = Math.random()*Constants.WIDTH/2;
+		posY = Math.random()*(Constants.HEIGHT/2) + Constants.HEIGHT/2;	
+		path.add(new Vector2D(posX, posY));
+		
+		posX = Math.random()*(Constants.WIDTH/2) + Constants.WIDTH/2;
+		posY = Math.random()*(Constants.HEIGHT/2) + Constants.HEIGHT/2;	
+		path.add(new Vector2D(posX, posY));
+		
+		movingObjects.add(new Ufo(
+				new Vector2D(x, y),
+				new Vector2D(),
+				Constants.UFO_MAX_VEL,
+				Assets.ufo,
+				path,
+				this
+				));
+		
+	}
     public void update(){
         for(int i = 0; i < movingObjects.size();i++)
             movingObjects.get(i).update();
@@ -106,6 +146,7 @@ public class GameState {
              if(movingObjects.get(i) instanceof Meteor)
                  return;
         
+        startWave();
     }
     public void draw(Graphics g){
         Graphics2D g2d=(Graphics2D)g;
@@ -121,4 +162,7 @@ public class GameState {
     public ArrayList<movingObject> getmovingObjects(){
         return movingObjects;
     }
+    public Player getPlayer() {
+		return player;
+	}
 }

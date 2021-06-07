@@ -12,7 +12,7 @@ import java.awt.image.BufferedImage;
 
 import graphics.Assets;
 import input.KeyBoard;
-import java.awt.image.ImageObserver;
+//import java.awt.image.ImageObserver;
 import math.Vector2D;
 import states.GameState;
 
@@ -22,6 +22,7 @@ public class Player extends movingObject{
     private Vector2D acceleration;
     private boolean accelerating = false;
     private Chronometer fireRate;
+    
     public Player(Vector2D position, Vector2D velocity,double maxVel, BufferedImage texture,GameState gameState) {
         super(position, velocity,maxVel,texture, gameState);
         heading = new Vector2D(0,1);
