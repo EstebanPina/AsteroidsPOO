@@ -31,7 +31,7 @@ public class GameState {
     private int meteors;
     
     public GameState(){
-       player = new Player(new Vector2D(100, 500), new Vector2D(),PLAYER_MAX_VEL, Assets.player,this);
+       player = new Player(new Vector2D(Constants.WIDTH/2-Assets.player.getWidth()/2,Constants.HEIGHT/2-Assets.player.getHeight()/2), new Vector2D(),PLAYER_MAX_VEL, Assets.player,this);
         movingObjects.add(player);
         meteors=1;
         startWave();
@@ -196,5 +196,8 @@ public class GameState {
             
             pos.setX(pos.getX()+20);
         
+    }
+    public void substractLife(){
+        lives--;
     }
 }
