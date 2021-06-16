@@ -1,8 +1,12 @@
 package states;
 
 import gameObjets.Constants;
+import gameObjets.Message;
+
 import static gameObjets.Constants.PLAYER_MAX_VEL;
 import gameObjets.Meteor;
+
+import java.awt.Color;
 import java.awt.Graphics;
 
 import gameObjets.Ufo;
@@ -11,6 +15,8 @@ import gameObjets.Size;
 import gameObjets.movingObject;
 import graphics.Animation;
 import graphics.Assets;
+import graphics.Text;
+
 import java.awt.Graphics2D;
 import java.awt.RenderingHints;
 import java.awt.image.BufferedImage;
@@ -25,10 +31,12 @@ public class GameState {
     private Player player;
     private ArrayList<movingObject> movingObjects = new ArrayList<movingObject>();
     private ArrayList<Animation> explosions = new ArrayList<Animation>();
+    private ArrayList<Message> messages = new ArrayList<Message>();
     private int score=0;
     private int lives=3;
 
     private int meteors;
+    private int waves=1;
     
     public GameState(){
        player = new Player(new Vector2D(Constants.WIDTH/2-Assets.player.getWidth()/2,Constants.HEIGHT/2-Assets.player.getHeight()/2), new Vector2D(),PLAYER_MAX_VEL, Assets.player,this);
@@ -36,8 +44,9 @@ public class GameState {
         meteors=1;
         startWave();
     }
-    public void addScore(int value){
+    public void addScore(int value, Vector2D position){
        score += value; 
+       messages.add(new Message(position, true, "+"+value+" score", Color.WHITE, false, Assets.fontMed, this));
     }
     public void divideMeteor(Meteor meteor){
         Size size = meteor.getSize();
@@ -73,6 +82,9 @@ public class GameState {
 
     }
     private void startWave(){
+        messages.add(new Message(new Vector2D(Constants.WIDTH/2, Constants.HEIGHT/2), false,
+				"WAVE "+waves, Color.WHITE, true, Assets.fontBig, this));
+
         double x,y;
         for(int i=0; i<meteors; i++){
             x=i%2==0 ? Math.random()*Constants.WIDTH : 0;
@@ -156,10 +168,12 @@ public class GameState {
     public void draw(Graphics g){
         Graphics2D g2d=(Graphics2D)g;
         g2d.setRenderingHint(RenderingHints.KEY_INTERPOLATION, RenderingHints.VALUE_INTERPOLATION_BILINEAR);
-      for(int i = 0; i < movingObjects.size();i++){
+        for(int i = 0; i<messages.size();i++)
+            messages.get(i).draw(g2d);
+        for(int i = 0; i < movingObjects.size();i++){
             movingObjects.get(i).draw(g);
         }
-      for(int i = 0; i < explosions.size(); i++){
+         for(int i = 0; i < explosions.size(); i++){
             Animation anim = explosions.get(i);
             g2d.drawImage(anim.getCurrentFrame(), (int)anim.getPosition().getX(), (int)anim.getPosition().getY(), null);
       }
@@ -168,6 +182,9 @@ public class GameState {
     }
     public ArrayList<movingObject> getmovingObjects(){
         return movingObjects;
+    }
+    public ArrayList<Message> getMessages(){
+        return messages;
     }
     public Player getPlayer() {
 		return player;

@@ -1,6 +1,7 @@
 package graphics;
 
 import java.awt.image.BufferedImage;
+import java.awt.Font;
 
 public class Assets {
 	
@@ -24,6 +25,9 @@ public class Assets {
     public static BufferedImage[] numbers=new BufferedImage[11];
     //Vidas
     public static BufferedImage life;
+    //Fonts
+    public static Font fontBig;
+	public static Font fontMed;
 
 	public static void init()
 	{
@@ -47,7 +51,8 @@ public class Assets {
                 
                 ufo = Loader.ImageLoader("../res/ufo.png");
                 life=Loader.ImageLoader("../res/life/life.png");
-                
+                fontBig=Loader.loadFont("../res/fonts/futureFont.ttf", 42);
+                fontMed=Loader.loadFont("../res/fonts/futureFont.ttf", 20);
 	}
 	
 }
