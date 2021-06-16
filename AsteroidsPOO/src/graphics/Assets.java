@@ -3,6 +3,8 @@ package graphics;
 import java.awt.image.BufferedImage;
 import java.awt.Font;
 
+import javax.sound.sampled.Clip;
+
 public class Assets {
 	
 	public static BufferedImage player;
@@ -25,9 +27,11 @@ public class Assets {
     public static BufferedImage[] numbers=new BufferedImage[11];
     //Vidas
     public static BufferedImage life;
-    //Fonts
+    //Fonts -- Fuentes
     public static Font fontBig;
 	public static Font fontMed;
+    //Sonidos
+    public static Clip backgroundMusic, explosion, playerLose, playerShoot, ufoShoot;
 
 	public static void init()
 	{
@@ -53,6 +57,12 @@ public class Assets {
                 life=Loader.ImageLoader("../res/life/life.png");
                 fontBig=Loader.loadFont("../res/fonts/futureFont.ttf", 42);
                 fontMed=Loader.loadFont("../res/fonts/futureFont.ttf", 20);
+
+                backgroundMusic = Loader.loadSound("../res/sounds/backgroundMusic.wav");
+		        explosion = Loader.loadSound("../res/sounds/explosion.wav");
+		        playerLose = Loader.loadSound("../res/sounds/playerLose.wav");
+		        playerShoot = Loader.loadSound("../res/sounds/playerShoot.wav");
+		        ufoShoot = Loader.loadSound("../res/sounds/ufoShoot.wav");
 	}
 	
 }

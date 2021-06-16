@@ -15,6 +15,7 @@ import gameObjets.Size;
 import gameObjets.movingObject;
 import graphics.Animation;
 import graphics.Assets;
+import graphics.Sound;
 import graphics.Text;
 
 import java.awt.Graphics2D;
@@ -37,12 +38,17 @@ public class GameState {
 
     private int meteors;
     private int waves=1;
+
+    private Sound backgroundMusic;
     
     public GameState(){
        player = new Player(new Vector2D(Constants.WIDTH/2-Assets.player.getWidth()/2,Constants.HEIGHT/2-Assets.player.getHeight()/2), new Vector2D(),PLAYER_MAX_VEL, Assets.player,this);
         movingObjects.add(player);
         meteors=1;
         startWave();
+        backgroundMusic = new Sound(Assets.backgroundMusic);
+        backgroundMusic.loop();
+        backgroundMusic.changeVolume(-10.0f);
     }
     public void addScore(int value, Vector2D position){
        score += value; 

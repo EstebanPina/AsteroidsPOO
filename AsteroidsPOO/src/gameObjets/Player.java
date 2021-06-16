@@ -5,13 +5,14 @@ package gameObjets;
 //import static gameObjets.Constants.DELTAANGLE;
 //import static gameObjets.Constants.FIRERATE;
 //import static gameObjets.Constants.LASER_VEL;
-import static gameObjets.Constants.PLAYER_MAX_VEL;
+//import static gameObjets.Constants.PLAYER_MAX_VEL;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.geom.AffineTransform;
 import java.awt.image.BufferedImage;
 
 import graphics.Assets;
+import graphics.Sound;
 import input.KeyBoard;
 //import java.awt.image.ImageObserver;
 import math.Vector2D;
@@ -25,6 +26,7 @@ public class Player extends movingObject{
     private Chronometer fireRate;
     private boolean spawning, visible;
     private Chronometer spawnTime, flickerTime;
+    private Sound shoot, lose;
     public Player(Vector2D position, Vector2D velocity,double maxVel, BufferedImage texture,GameState gameState) {
         super(position, velocity,maxVel,texture, gameState);
         heading = new Vector2D(0,1);
@@ -32,6 +34,8 @@ public class Player extends movingObject{
         fireRate=new Chronometer();
         spawnTime=new Chronometer();
         flickerTime=new Chronometer();
+        shoot = new Sound(Assets.playerShoot);
+        lose = new Sound(Assets.playerLose);
     }
 
     @Override
@@ -56,7 +60,12 @@ public class Player extends movingObject{
                 ,gameState
                 ));
             fireRate.run(Constants.FIRERATE);
+            shoot.play();
         }
+        if(shoot.getFramePosition() > 8500) {
+			shoot.stop();
+		}
+
         if(KeyBoard.RIGHT)
             angle += Constants.DELTAANGLE;
         if(KeyBoard.LEFT)
@@ -93,6 +102,7 @@ public class Player extends movingObject{
        public void Destroy(){
          spawning=true;
          spawnTime.run(Constants.SPAWNING_TIME);
+         lose.play();
          resetValues();
          gameState.substractLife();
        }
