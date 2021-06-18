@@ -10,7 +10,6 @@ import math.Vector2D;
 import states.GameState;
 
 public class Message {
-	private GameState gameState;
 	private float alpha;
 	private String text;
 	private Vector2D position;
@@ -19,16 +18,18 @@ public class Message {
 	private boolean fade;
 	private Font font;
 	private final float deltaAlpha = 0.01f;
+        private boolean dead;
 	
 	public Message(Vector2D position, boolean fade, String text, Color color,
-			boolean center, Font font, GameState gameState) {
+			boolean center, Font font) {
 		this.font = font;
-		this.gameState = gameState;
+		
 		this.text = text;
 		this.position = position;
 		this.fade = fade;
 		this.color = color;
 		this.center = center;
+                this.dead=false;
 		
 		if(fade)
 			alpha = 1;
@@ -36,6 +37,10 @@ public class Message {
 			alpha = 0;
 		
 	}
+
+    public Message() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 	
 	public void draw(Graphics2D g2d) {
 		
@@ -53,7 +58,7 @@ public class Message {
 			alpha += deltaAlpha;
 		
 		if(fade && alpha < 0) {
-			gameState.getMessages().remove(this);
+			dead=true;
 		}
 		
 		if(!fade && alpha > 1) {
@@ -64,5 +69,8 @@ public class Message {
 		
 	}
 	
-	
+    public boolean isDead(){
+        return dead;
+    }
 }
+

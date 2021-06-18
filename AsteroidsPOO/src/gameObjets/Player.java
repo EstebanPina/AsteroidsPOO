@@ -103,8 +103,11 @@ public class Player extends movingObject{
          spawning=true;
          spawnTime.run(Constants.SPAWNING_TIME);
          lose.play();
+         if(!gameState.substractLife()){
+             gameState.gameOver();
+             super.Destroy();
+         }
          resetValues();
-         gameState.substractLife();
        }
        private void resetValues(){
            angle=0;

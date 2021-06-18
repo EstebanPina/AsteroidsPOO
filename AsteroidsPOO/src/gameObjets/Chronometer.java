@@ -16,7 +16,7 @@ public class Chronometer{
     
     public Chronometer(){
         delta=0;
-        lastTime=0;
+        lastTime=System.currentTimeMillis();
         running=false;
     }
     public void run(long time){
